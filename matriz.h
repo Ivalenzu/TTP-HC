@@ -29,15 +29,3 @@ int ** constructor(FILE * archivo, int * aux){
 
   return matriz;
 }
-
-
-/* Función simple que nos imprime el contenido de los arrays bidimensionales */
-
-void printeador_matriz(int ** matriz, int tamano_matriz){
-  for(int i=0; i < tamano_matriz; i++){
-    for(int j=0; j < tamano_matriz; j++){
-      printf("%d ", matriz[i][j]);
-    }
-    printf("\n");
-  }
-}
