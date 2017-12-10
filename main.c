@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <ctype.h>
 #include "aleatoria.h"
 #include "matriz.h"
+#include "hill_climbing.h"
 #include "printeador.h"
 
 int main(int argc, char *argv[]){
@@ -12,7 +14,7 @@ int main(int argc, char *argv[]){
 
   int tamano_matriz = 1;
   FILE * archivo;
-  int ** matriz;
+  int ** distancias;
   int ** initial;
   char ** equipos;
   int selector;
@@ -28,15 +30,14 @@ int main(int argc, char *argv[]){
   else if(argv[1][11] == 'F')
     selector = 117;
 
-  matriz = constructor(archivo, &tamano_matriz);
+  distancias = constructor(archivo, &tamano_matriz);
 
 /* --- Se comienza a generar la solución random que será la inicial para Hill Climbing */
 
   initial = generador(tamano_matriz);
   equipos = nombres(selector,tamano_matriz);
 
-  /*printeador_matriz(initial, tamano_matriz, 1);
-  */printeador_solucion(initial,tamano_matriz,equipos);
+  printeador_solucion(initial,tamano_matriz,equipos);
 
 /* Parte del codigo donde se libera la memoria dinámica y se cierran archivos */
 
