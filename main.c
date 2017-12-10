@@ -16,6 +16,7 @@ int main(int argc, char *argv[]){
   FILE * archivo;
   int ** distancias;
   int ** initial;
+  int distancia;
   char ** equipos;
   int selector;
 
@@ -39,14 +40,18 @@ int main(int argc, char *argv[]){
 
   printeador_solucion(initial,tamano_matriz,equipos);
 
+  distancia = funcion_evaluadora(initial,distancias,tamano_matriz);
+
+  printf("\n %d", distancia);
+
 /* Parte del codigo donde se libera la memoria dinámica y se cierran archivos */
 
   for(int i=0; i < tamano_matriz; i++){
-    free(matriz[i]);
+    free(distancias[i]);
     free(initial[i]);
     free(equipos[i]);
   }
-  free(matriz);
+  free(distancias);
   free(initial);
   free(equipos);
 
