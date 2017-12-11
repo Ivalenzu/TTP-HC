@@ -5,7 +5,7 @@ int ** constructor(FILE * archivo, int * aux){
   char * caracter;
   int ** matriz;
 
-  caracter = malloc(80 * sizeof(char));
+  caracter = calloc(80 , sizeof(char));
 
   fgets(caracter, 80, archivo);
 
@@ -16,9 +16,9 @@ int ** constructor(FILE * archivo, int * aux){
 
   rewind(archivo);
 
-  matriz = malloc(*aux * sizeof(int*));
+  matriz = calloc(*aux , sizeof(int*));
   for(int i=0; i < *aux; i++)
-    matriz[i] = malloc(*aux * sizeof(int));
+    matriz[i] = calloc(*aux , sizeof(int));
 
   for(int i=0; i < *aux; i++){
     for(int j=0; j < *aux; j++)
@@ -38,11 +38,11 @@ char ** nombres(int selector, int tamano_matriz){
   int k = selector;
 
   archivo = fopen("ciudades.txt", "r");
-  equipos = malloc(tamano_matriz * sizeof(char*));
-  lector = malloc(300 * sizeof(char));
+  equipos = calloc(tamano_matriz , sizeof(char*));
+  lector = calloc(300 , sizeof(char));
 
   for(int i = 0; i < tamano_matriz; i++)
-    equipos[i] = malloc(3 * sizeof(char));
+    equipos[i] = calloc(3 , sizeof(char));
 
     fgets(lector, 245, archivo);
 
@@ -64,3 +64,16 @@ char ** nombres(int selector, int tamano_matriz){
 
   return equipos;
 }
+/*
+
+0 2
+0 1
+2 0
+0 1
+1 0
+1 0
+2 0
+0 2
+
+
+*/

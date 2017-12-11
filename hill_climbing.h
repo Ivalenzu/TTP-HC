@@ -1,6 +1,6 @@
 int funcion_evaluadora(int ** solucion, int ** distancias, int tamano_matriz){
     int total = 0;
-    for(int i = 0; i < tamano_matriz-1; i++){ /* Fechas */
+    for(int i = 0; i < (tamano_matriz-1)*2 ; i++){ /* Fechas */
       for(int j = 0; j < tamano_matriz; j++){ /* Equipos */
           if(i == 0){
             if(solucion[j][i] < 0)

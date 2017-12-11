@@ -27,7 +27,7 @@ void printeador_solucion(int ** solucion, int tamano_matriz, char ** equipos){
   }
 
   printf("\n\n");
-  for(int i = 0; i < tamano_matriz-1; i++){
+  for(int i = 0; i < (tamano_matriz-1)*2; i++){
     if(i >= 10)
       printf("%d      ", i);
     else

@@ -38,19 +38,20 @@ int main(int argc, char *argv[]){
   initial = generador(tamano_matriz);
   equipos = nombres(selector,tamano_matriz);
 
-  printeador_solucion(initial,tamano_matriz,equipos);
-
+printeador_solucion(initial,tamano_matriz,equipos);
+/*
   distancia = funcion_evaluadora(initial,distancias,tamano_matriz);
 
   printf("\n %d", distancia);
-
+*/
 /* Parte del codigo donde se libera la memoria dinámica y se cierran archivos */
 
   for(int i=0; i < tamano_matriz; i++){
     free(distancias[i]);
-    free(initial[i]);
     free(equipos[i]);
+    free(initial[i]);
   }
+
   free(distancias);
   free(initial);
   free(equipos);
