@@ -18,7 +18,7 @@ void verificador(int ** home_road, int ** home_road_auxiliar, int tamano_matriz)
   }
 }
 
-int ** generador(int tamano_matriz){
+int ** generador(int tamano_matriz, int estatico){
 
   int rand_rival;
   int rand_local;
@@ -27,6 +27,7 @@ int ** generador(int tamano_matriz){
   int tolerancia;
   int total;
   int ayuda;
+  time_t t;
   int super_tolerancia = 0;
   int ** initial = calloc(tamano_matriz , sizeof(int *));
   int ** fila = calloc(tamano_matriz , sizeof(int *));
@@ -36,6 +37,9 @@ int ** generador(int tamano_matriz){
   int ** home_road_auxiliar = calloc(tamano_matriz , sizeof(int *));
   int * interseccion = calloc(tamano_matriz, sizeof(int));
 
+  if(estatico){
+    srand(time(&t));
+  }
 /* Asignando memoria */
 
   for(int i = 0; i < tamano_matriz; i++){
@@ -235,9 +239,6 @@ Equipos[j]     - - -
     interseccion[i] = columna[i][tamano_matriz-2];
   }
 
-  for(int i = 0; i < tamano_matriz; i++)
-    printf("%d ", interseccion[i]);
-
   for(int k=0; k < tamano_matriz; k++){
     for(int l=0; l < tamano_matriz-1;l++)
       columna[k][l] = 0;
@@ -434,8 +435,6 @@ Equipos[j]     - - -
     }
   }
 
-  printf("%d\n",total);
-
   for(int i = 0; i < tamano_matriz; i++){
     free(fila[i]);
     free(home_road[i]);
@@ -449,6 +448,7 @@ Equipos[j]     - - -
   free(home_road);
   free(home_road_auxiliar);
   free(historial);
+  free(interseccion);
 
   return initial;
 }

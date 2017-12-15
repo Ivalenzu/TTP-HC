@@ -64,16 +64,10 @@ char ** nombres(int selector, int tamano_matriz){
 
   return equipos;
 }
-/*
 
-0 2
-0 1
-2 0
-0 1
-1 0
-1 0
-2 0
-0 2
-
-
-*/
+double timeval_diff(struct timeval *a, struct timeval *b)
+{
+  return
+    (double)(a->tv_sec + (double)a->tv_usec/1000000) -
+    (double)(b->tv_sec + (double)b->tv_usec/1000000);
+}
