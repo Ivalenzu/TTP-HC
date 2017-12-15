@@ -18,6 +18,7 @@ int main(int argc, char *argv[]){
   int ** distancias;
   int estatico = 0;
   int ** initial;
+  int tipo = 0;
   int ** auxiliar;
   char ** equipos;
   int dist_final;
@@ -36,11 +37,11 @@ int main(int argc, char *argv[]){
   }
   /* PORFAVOR IGNACIO ACUERDATE DE CAMBIAR ESTO AL INDICE CORRECTO PARA LA ENTREGA: Debería ser 1 */
 
-  if(argv[1][11] == 'L')
+  if(argv[1][1] == 'L')
     selector = 0;
-  else if(argv[1][11] == 'u')
+  else if(argv[1][1] == 'u')
     selector = 61;
-  else if(argv[1][11] == 'F')
+  else if(argv[1][1] == 'F')
     selector = 117;
 
   distancias = constructor(archivo, &tamano_matriz);
@@ -59,8 +60,25 @@ int main(int argc, char *argv[]){
   gettimeofday(&t_ini, NULL);
   if(estatico){
     for(int i = 0; i < restart; i++){
+      printf("¿Que movimiento desea usar en Hill-Climbing? ");
+      scanf("%d", &tipo);
       if(i == 0){
-        dist_final = hc_fecha(initial,distancias,tamano_matriz);
+        switch (tipo) {
+          case 0:
+            dist_final = hc_emparejamiento(initial,distancias,tamano_matriz);
+            break;
+          case 1:
+            dist_final = hc_fecha(initial,distancias,tamano_matriz);
+            break;
+          case 2:
+            dist_final = hc_localidad(initial,distancias,tamano_matriz);
+            break;
+          default:
+            dist_final = hc_emparejamiento(initial,distancias,tamano_matriz);
+            dist_final = hc_fecha(initial,distancias,tamano_matriz);
+            dist_final = hc_localidad(initial,distancias,tamano_matriz);
+            break;
+        }
         for(int j = 0; j < (tamano_matriz-1)*2;j++){
           for(int k = 0; k < tamano_matriz; k++)
             auxiliar[k][j] = initial[k][j];
@@ -72,7 +90,24 @@ int main(int argc, char *argv[]){
           free(initial[j]);
         free(initial);
         initial = generador(tamano_matriz,1);
-        dist_final = hc_emparejamiento(initial,distancias,tamano_matriz);
+        printf("¿Que movimiento desea usar en Hill-Climbing? ");
+        scanf("%d", &tipo);
+        switch (tipo) {
+          case 0:
+            dist_final = hc_emparejamiento(initial,distancias,tamano_matriz);
+            break;
+          case 1:
+            dist_final = hc_fecha(initial,distancias,tamano_matriz);
+            break;
+          case 2:
+            dist_final = hc_localidad(initial,distancias,tamano_matriz);
+            break;
+          default:
+            dist_final = hc_emparejamiento(initial,distancias,tamano_matriz);
+            dist_final = hc_fecha(initial,distancias,tamano_matriz);
+            dist_final = hc_localidad(initial,distancias,tamano_matriz);
+            break;
+        }
         printeador_solucion(initial,tamano_matriz,equipos);
         if(dist_final < funcion_evaluadora(auxiliar,distancias,tamano_matriz)){
           for(int j = 0; j < (tamano_matriz-1)*2;j++){
@@ -85,9 +120,9 @@ int main(int argc, char *argv[]){
   }
   else
     dist_final = hc_emparejamiento(initial,distancias,tamano_matriz);
-  /*dist_final = hc_fecha(initial,distancias,tamano_matriz);
-  *//*dist_final = hc_localidad(initial,distancias,tamano_matriz);
-  */gettimeofday(&t_fin, NULL);
+    dist_final = hc_fecha(initial,distancias,tamano_matriz);
+    dist_final = hc_localidad(initial,distancias,tamano_matriz);
+    gettimeofday(&t_fin, NULL);
 
   secs = timeval_diff(&t_fin,&t_ini);
 

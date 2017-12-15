@@ -1,6 +1,7 @@
 # Archivos que no se necesitan
 
 *.o
+*.out
 *~
 *.pdf
 Plantilla-Entrega-2
