@@ -65,6 +65,7 @@ int main(int argc, char *argv[]){
           for(int k = 0; k < tamano_matriz; k++)
             auxiliar[k][j] = initial[k][j];
         }
+        printeador_solucion(initial,tamano_matriz,equipos);
       }
       else{
         for(int j=0; j < tamano_matriz; j++)
@@ -72,6 +73,7 @@ int main(int argc, char *argv[]){
         free(initial);
         initial = generador(tamano_matriz,1);
         dist_final = hc_emparejamiento(initial,distancias,tamano_matriz);
+        printeador_solucion(initial,tamano_matriz,equipos);
         if(dist_final < funcion_evaluadora(auxiliar,distancias,tamano_matriz)){
           for(int j = 0; j < (tamano_matriz-1)*2;j++){
             for(int k = 0; k < tamano_matriz; k++)
@@ -89,9 +91,9 @@ int main(int argc, char *argv[]){
 
   secs = timeval_diff(&t_fin,&t_ini);
 
+  printeador_solucion(auxiliar,tamano_matriz,equipos);
   printf("%.16g milisegundos\n", secs * 1000.0);
   printf("Distancia: %d\n", dist_final);
-  printeador_solucion(initial,tamano_matriz,equipos);
 
 /* Parte del codigo donde se libera la memoria dinámica y se cierran archivos */
 

@@ -290,7 +290,6 @@ int hc_localidad(int ** solucion_inicial, int ** distancias, int tamano_matriz){
         pareja2 = abs(matriz_aux[j-1][i]);
         if(restriccion_seguidas(matriz_aux,tamano_matriz,pareja1,pareja2,1)){
           dist_aux = funcion_evaluadora(matriz_aux,distancias,tamano_matriz);
-          printf("Localidad: %d %d\n", min_dist, dist_aux);
           if(dist_aux < min_dist){
             min_dist = dist_aux;
             for(int h = 0; h < (tamano_matriz-1)*2; h++){
@@ -360,7 +359,6 @@ int hc_fecha(int ** solucion_inicial, int ** distancias, int tamano_matriz){
           }
           if(restriccion_columna(matriz_aux,tamano_matriz) && homestand){
             dist_aux = funcion_evaluadora(matriz_aux,distancias,tamano_matriz);
-            printf("Fecha: %d %d\n", min_dist, dist_aux);
             if(dist_aux < min_dist){
               min_dist = dist_aux;
               for(int h = 0; h < (tamano_matriz-1)*2; h++){
